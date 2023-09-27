@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/fotoTreino"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/agaxamento"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+    </ImageView>
+    
+    <TextView
+        android:id="@+id/nomeTreino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agachamento"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toEndOf="@id/fotoTreino"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+    </TextView>
+
+    <TextView
+        android:id="@+id/descricaoTreino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alinhe os pés com o quadril, imagine que você está se sentando em uma cadeira: dobre os joelhos, empine levemente o bumbum e faça o movimento de descida"
+        android:textSize="14dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:maxLines="5"
+        app:layout_constraintTop_toBottomOf="@id/nomeTreino"
+        app:layout_constraintStart_toEndOf="@id/fotoTreino"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

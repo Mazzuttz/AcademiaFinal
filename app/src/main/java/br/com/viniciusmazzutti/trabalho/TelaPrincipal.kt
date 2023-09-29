@@ -12,7 +12,7 @@ class TelaPrincipal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tela_principal)
-        
+
         val recyclerView_treinos = findViewById<RecyclerView>(R.id.recycleView_treinos)
         recyclerView_treinos.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false)
         recyclerView_treinos.setHasFixedSize(true) //este metodo dará mais desempenho para a nossa lista de treinos
@@ -21,8 +21,8 @@ class TelaPrincipal : AppCompatActivity() {
         //configurar o adapter
         // criaçao de uma lista
         val listaTreinos: MutableList<Treino> = mutableListOf()
-        //variavel recebendo a classe adapter de produto
-        val adapterTreino = AdapterTreino(this,listaTreinos) // variavel recebendo o adapter configurado com o contexto e a lista de profutos
+        //variavel recebendo a classe adapter de treino
+        val adapterTreino = AdapterTreino(this,listaTreinos) // variavel recebendo o adapter configurado com o contexto e a lista de treinos
         recyclerView_treinos.adapter = adapterTreino
 
         val treino1 = Treino(

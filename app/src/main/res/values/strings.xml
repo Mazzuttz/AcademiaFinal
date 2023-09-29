@@ -5,6 +5,6 @@
     <string name="hint_senha">Senha</string>
     <string name="txt_button_entrar">Entrar</string>
     <string name="txt_tela_cadastro">Não tem conta? Cadastre-se!</string>
-    <string name="menu_1">Menu 1</string>
+    <string name="lista_treinos">Lista de Treinos</string>
     <string name="group1">group1</string>
 </resources>

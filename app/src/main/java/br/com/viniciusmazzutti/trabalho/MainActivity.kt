@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
             val email = binding.editEmail.text.toString()
             val senha = binding.editSenha.text.toString()
 
+            //mensagens de auxilio para o usuario
             when{
                 email.isEmpty() ->{
                     binding.editEmail.error = "Preencha o E-mail!"
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+     // função para reaçizar o login, alterando a cor do texto e subindo uma mensagem
     private fun login(view: View){
         binding.btEntrar.isEnabled = false
         binding.btEntrar.setTextColor(resources.getColor(R.color.white))
@@ -61,6 +63,6 @@ class MainActivity : AppCompatActivity() {
     private fun navegarTelaPrincipal(){
         val intent = Intent(this@MainActivity, Home::class.java)
         startActivity(intent)
-        //finish()
+        finish()
     }
 }

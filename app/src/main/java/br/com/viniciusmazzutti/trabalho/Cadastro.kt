@@ -12,20 +12,20 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
 class Cadastro : AppCompatActivity() {
-    private lateinit var binding: ActivityCadastroBinding
+    private  var binding: ActivityCadastroBinding? = null
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCadastroBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding?.root)
         auth = Firebase.auth
 
-        binding.btCadastro.setOnClickListener {
-            val email: String = binding.editEmail.text.toString()
-            val senha: String = binding.editSenha.text.toString()
-            val senha2: String = binding.editSenha2.text.toString()
+        binding?.btCadastro?.setOnClickListener {
+            val email: String = binding?.editEmail?.text.toString()
+            val senha: String = binding?.editSenha?.text.toString()
+            val senha2: String = binding?.editSenha2?.text.toString()
 
-           if (email.isNotEmpty() && senha.isEmpty() && senha2.isEmpty()){
+           if (email.isNotEmpty() && senha.isNotEmpty() && senha2.isNotEmpty()){
                if(senha == senha2){
                    createUserWithEmailAndPassoword(email, senha)
                }else{
@@ -40,12 +40,12 @@ class Cadastro : AppCompatActivity() {
     }
 
 
-    private fun createUserWithEmailAndPassoword(email: String, senha:String) {
+    private fun createUserWithEmailAndPassoword(email: String, senha: String) {
         auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
             if (task.isSuccessful){
                 Log.d(TAG,"Conta criada com sucesso")
-              //  val user = auth.currentUser
                 navegarTelaLogin()
+                //  val user = auth.currentUser
             }else{
                 Log.w(TAG,"Erro de autenticação")
             }
@@ -61,4 +61,8 @@ class Cadastro : AppCompatActivity() {
         finish()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
 }

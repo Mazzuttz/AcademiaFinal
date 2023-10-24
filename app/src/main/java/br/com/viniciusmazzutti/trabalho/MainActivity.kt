@@ -2,62 +2,61 @@ package br.com.viniciusmazzutti.trabalho
 
 import android.content.Intent
 import android.graphics.Color
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import br.com.viniciusmazzutti.trabalho.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        auth = Firebase.auth
         window.statusBarColor = Color.parseColor("#FFFFFF")
 
         binding.btEntrar.setOnClickListener {
+            val email: String = binding.editEmail.text.toString()
+            val senha: String = binding.editSenha.text.toString()
 
-            val email = binding.editEmail.text.toString()
-            val senha = binding.editSenha.text.toString()
-
-            //mensagens de auxilio para o usuario
-            when{
-                email.isEmpty() ->{
-                    binding.editEmail.error = "Preencha o E-mail!"
-                }
-                senha.isEmpty() ->{
-                    binding.editSenha.error = "Preencha a Senha"
-                }
-                !email.contains("@gmail.com.br") ->{
-                    val snackbar = Snackbar.make(it,"E-mail inválido!", Snackbar.LENGTH_SHORT)
-                    snackbar.show()
-                }
-                senha.length <= 5 ->{
-                    val snackbar = Snackbar.make(it,"A senha precisa ter pelo menos 6 caracteres!", Snackbar.LENGTH_SHORT)
-                    snackbar.show()
-                }
-                else -> {
-                    //aqui vamos fazer o login de usuário
-                    login(it)
-
-                }
+            if(email.isNotEmpty() && senha.isNotEmpty()){
+                singinUserWithEmailAndPassoword(email, senha)
+            }else{
+                Toast.makeText(this@MainActivity, "Por favor preencha os campos vazios ", Toast.LENGTH_SHORT).show()
+            }
+            binding.TelaCadastro.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cadastro:: class.java)
+                startActivity(intent)
             }
         }
     }
-     // função para reaçizar o login, alterando a cor do texto e subindo uma mensagem
-    private fun login(view: View){
-        binding.btEntrar.isEnabled = false
-        binding.btEntrar.setTextColor(resources.getColor(R.color.white))
-        Handler(Looper.getMainLooper()).postDelayed({
-            navegarTelaPrincipal()
-            val snackbar = Snackbar.make(view,"Login feito!", Snackbar.LENGTH_SHORT)
-            snackbar.show()
-        },500)
+
+    private fun singinUserWithEmailAndPassoword(email: String, senha:String) {
+        auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
+            if (task.isSuccessful){
+                Log.d(TAG,"Autenticação feita com sucesso")
+                navegarTelaPrincipal()
+                //val user = auth.currentUser
+            }else{
+                Log.w(TAG,"Erro de autenticação")
+            }
+        }
+    }
+
+    companion object{
+        private  var TAG = "EmailAndPassword"
     }
 
     private fun navegarTelaPrincipal(){
@@ -65,4 +64,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }

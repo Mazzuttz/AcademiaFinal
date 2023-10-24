@@ -90,31 +90,46 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btEntrar"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtIputLayoutSenha2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txt_button_entrar"
+            app:layout_constraintTop_toBottomOf="@id/txtIputLayoutSenha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:boxStrokeColor="@color/dark_cyan_green"
+            app:hintAnimationEnabled="true"
+            app:hintTextColor="@color/black"
+            app:errorTextColor="@color/red"
+            app:passwordToggleEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editSenha2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_senha"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:background="@drawable/background_edittext"
+                android:padding="15dp"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar"
             android:textAllCaps="false"
             android:padding="15dp"
             android:background="@drawable/backgroud_button_selector"
             android:enabled="true"
-            app:layout_constraintTop_toBottomOf="@id/txtIputLayoutSenha"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp" />
-        <TextView
-            android:id="@+id/Tela_Cadastro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_tela_cadastro"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/btEntrar"
+            app:layout_constraintTop_toBottomOf="@id/txtIputLayoutSenha2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"
@@ -126,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/Tela_Cadastro"
+            app:layout_constraintTop_toBottomOf="@id/btCadastro"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

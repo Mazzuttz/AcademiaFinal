@@ -2,20 +2,14 @@ package br.com.viniciusmazzutti.trabalho
 
 import android.content.Intent
 import android.graphics.Color
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import br.com.viniciusmazzutti.trabalho.databinding.ActivityMainBinding
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
@@ -42,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
+//teste comit
     private fun singinUserWithEmailAndPassoword(email: String, senha:String) {
         auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { task ->
             if (task.isSuccessful){
